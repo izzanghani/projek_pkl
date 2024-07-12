@@ -9,7 +9,7 @@
                         <h5>kategori</h5>
                     </div>
                     <div class="float-end">
-                        <a href="{{ route('kategori.index') }}" class="btn btn-sm btn-outline-primary">Kembali</a>
+                        <a href="{{ route('kategori.index') }}" class="btn btn-sm btn-primary">Kembali</a>
                     </div>
                 </div>
 

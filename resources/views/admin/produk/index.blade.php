@@ -5,63 +5,80 @@
 @endsection
 
 @section('content')
-<h4 class="py-3 mb-4">
-    <span class="text-muted fw-light">Tables /</span> produk
-</h4>
-
-<div class="card">
-    <div class="card-header">
-        <div class="float-start">
-            <h5>Produk</h5>
-        </div>
-        <div class="float-end ">
-            <a href="{{ route('produk.create') }}" class="btn btn-sm btn-primary">Add</a>
-        </div>
-    </div>
-
-    <div class="card-body">
-        <div class="table-responsive text-nowrap">
-            <table class="table" id="example">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama produk</th>
-                        <th>Harga</th>
-                        <th>Nama Kategori</th>
-                        <th>Nama Supplier</th>
-
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody class="table-border-bottom-0">
-                    @php $i = 1; @endphp
-                    @foreach ($produk as $data)
-                    <tr>
-                        <td>{{ $i++ }}</td>
-                        <td>{{ $data->nama_produk }}</td>
-                        <td>{{ $data->harga }}</td>
-                        <td>{{$data->kategori->nama_kategori}}</td>
-                        <td>{{$data->supplier->nama}}</td>
-
-
-
-                        <td>
-                            <form action="{{ route('produk.destroy', $data->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <a href="{{ route('produk.edit', $data->id) }}"
-                                    class="btn btn-sm btn-warning">Edit</a> |
-                                <button type="submit" onclick="return confirm('Are You Sure ?');"
-                                    class="btn btn-sm btn-danger">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+<div class="container mt-10">
+    <div class="row page-titles mx-0">
+        <div class="col-sm-12 p-md-0">
+            <div class="welcome-text">
+              <h4>Tables / Supplier</h4>
+            </div>
         </div>
     </div>
 </div>
+<div class="container">
+
+
+    <div class="card">
+        <div class="card-header">
+            <div class="float-start">
+                <h5>Produk</h5>
+            </div>
+            <div class="float-end ">
+                <a href="{{ route('produk.create') }}" class="btn btn-sm btn-primary">Add</a>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive text-nowrap">
+                <table class="table" id="example">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama produk</th>
+                            <th>Stok</th>
+                            <th>Harga</th>
+                            <th>Nama Kategori</th>
+                            <th>Nama Supplier</th>
+                            <th>cover</th>
+
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                        @php $i = 1; @endphp
+                        @foreach ($produk as $data)
+                        <tr>
+                            <td>{{ $i++ }}</td>
+                            <td>{{ $data->nama_produk }}</td>
+                            <td>{{ $data->stok }}</td>
+                            <td>{{ $data->harga }}</td>
+                            <td>{{$data->kategori->nama_kategori}}</td>
+                            <td>{{$data->supplier->nama}}</td>
+                            <td>
+                                <img src="{{ asset('/images/produk/' . $data->cover) }}"
+                                    style="width: 150px">
+                            </td>
+
+
+
+                            <td>
+                                <form action="{{ route('produk.destroy', $data->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a href="{{ route('produk.edit', $data->id) }}"
+                                        class="btn btn-sm btn-warning">Edit</a> |
+                                    <a href="{{ route('produk.destroy', $data->id)}}"
+                                            class="btn btn-sm btn-danger" data-confirm-delete="true">Delete</a>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @push('scripts')

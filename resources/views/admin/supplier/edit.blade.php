@@ -2,8 +2,17 @@
 @extends('layouts.admin')
 
 @section('content')
-
-    <div class="card mb-4 " style="border-radius: 30px; max-width: 80%; ">
+<div class="container mt-10">
+    <div class="row page-titles mx-0">
+        <div class="col-sm-12 p-md-0">
+            <div class="welcome-text">
+              <h4>Tables / Supplier / Edit</h4>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="card mb-4 ">
         <div class="card-body pt-2 mt-1" >
             <form id="formAccountSettings" method="POST" action="{{ route('supplier.update', $supplier->id) }}">
                 @csrf
@@ -49,19 +58,16 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
+
+                            <div class="mt-4">
+                                <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
+                                <button type="reset" class="btn btn-sm btn-danger">reset</button>
+                            </div>
                         </div>
                     </div>
-
-
-
-
-                </div>
-
-                <div class="mt-4">
-                    <button type="submit" class="btn btn-primary me-2 waves-effect waves-light" style="border-radius: 30px">Save changes</button>
-                    <button type="reset" class="btn btn-outline-secondary waves-effect" style="border-radius: 30px">Reset</button>
                 </div>
             </form>
         </div>
     </div>
+</div>
 @endsection

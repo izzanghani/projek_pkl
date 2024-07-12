@@ -5,19 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\Supplier;
 
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SupplierController extends Controller
 {
     public function index()
     {
         $supplier = Supplier::all();
-        return view('supplier.index', compact('supplier'));
+        confirmDelete('Delete','Are you sure?');
+        return view('admin.supplier.index', compact('supplier'));
     }
 
 
     public function create()
     {
-        return view('supplier.create');
+        return view('admin.supplier.create');
     }
 
 
@@ -35,6 +37,7 @@ class SupplierController extends Controller
         $supplier->alamat = $request->alamat;
         $supplier->save();
 
+        Alert::success('Success','data berhasil disimpan')->autoClose(1000);
         return redirect()->route('supplier.index');
     }
 
@@ -48,7 +51,7 @@ class SupplierController extends Controller
     public function edit($id)
     {
         $supplier = Supplier::findOrFail($id);
-        return view('supplier.edit', compact('supplier'));
+        return view('admin.supplier.edit', compact('supplier'));
     }
 
 
@@ -66,16 +69,17 @@ class SupplierController extends Controller
         $supplier->no_telepon = $request->no_telepon;
         $supplier->alamat = $request->alamat;
 
+        Alert::success('Success','data berhasil disimpan')->autoClose(1000);
         $supplier->save();
         return redirect()->route('supplier.index');
     }
 
 
-    public function destroy(Supplier $supplier)
+    public function destroy($id)
     {
-
+        $supplier = Supplier::findOrFail($id);
         $supplier->delete();
-        return redirect()->route('supplier.index')
-                         ->with('succes', 'Supplier delete succesfully');
+        Alert::success('success','Data nerhasil Dihapus');
+        return redirect()->route('supplier.index');
     }
 }

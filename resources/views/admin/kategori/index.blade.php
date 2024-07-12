@@ -5,9 +5,17 @@
 @endsection
 
 @section('content')
-<h4 class="py-3 mb-4">
-    <span class="text-muted fw-light">Tables /</span> kategori
-</h4>
+<div class="container mt-10">
+    <div class="row page-titles mx-0">
+        <div class="col-sm-12 p-md-0">
+            <div class="welcome-text">
+              <h4>Tables / Supplier</h4>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+
 
 <div class="card">
     <div class="card-header">
@@ -42,8 +50,8 @@
                                 @method('DELETE')
                                 <a href="{{ route('kategori.edit', $data->id) }}"
                                     class="btn btn-sm btn-warning">Edit</a> |
-                                <button type="submit" onclick="return confirm('Are You Sure ?');"
-                                    class="btn btn-sm btn-danger">Delete</button>
+                                <a href="{{ route('supplier.destroy', $data->id)}}"
+                                     class="btn btn-sm btn-danger" data-confirm-delete="true">Delete</a>
                             </form>
                         </td>
                     </tr>
@@ -52,6 +60,7 @@
             </table>
         </div>
     </div>
+</div>
 </div>
 @endsection
 

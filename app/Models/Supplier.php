@@ -17,4 +17,8 @@ class Supplier extends Model
     {
         return $this->hasMany(Produk::class, 'id_supplier');
     }
+    public function transaksi()
+    {
+        return $this->hasMany(Transaksi::class, 'id_supplier');
+    }
 }

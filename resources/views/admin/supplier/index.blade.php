@@ -5,11 +5,17 @@
 @endsection
 
 @section('content')
-<h4 class="py-3 mb-4">
-    <span class="text-muted fw-light">Tables /</span> supplier
-</h4>
+<div class="container mt-10">
+    <div class="row page-titles mx-0">
+        <div class="col-sm-12 p-md-0">
+            <div class="welcome-text">
+              <h4>Tables / Supplier</h4>
+            </div>
+        </div>
+    </div>
+</div>
 
-<div class="card">
+<div class="container"><div class="card">
     <div class="card-header">
         <div class="float-start">
             <h5>supplier</h5>
@@ -18,7 +24,7 @@
             <a href="{{ route('supplier.create') }}" class="btn btn-sm btn-primary">Add</a>
         </div>
     </div>
-
+    
     <div class="card-body">
         <div class="table-responsive text-nowrap">
             <table class="table" id="example">
@@ -44,9 +50,9 @@
                                 @csrf
                                 @method('DELETE')
                                 <a href="{{ route('supplier.edit', $data->id) }}"
-                                    class="btn btn-sm btn-warning">Edit</a> |
-                                <button type="submit" onclick="return confirm('Are You Sure ?');"
-                                    class="btn btn-sm btn-danger">Delete</button>
+                                    class="btn text-light btn-sm btn-warning">Edit</a> |
+                                    <a href="{{ route('supplier.destroy', $data->id)}}"
+                                        class="btn btn-sm btn-danger" data-confirm-delete="true">Delete</a>
                             </form>
                         </td>
                     </tr>
@@ -55,6 +61,7 @@
             </table>
         </div>
     </div>
+</div>
 </div>
 @endsection
 

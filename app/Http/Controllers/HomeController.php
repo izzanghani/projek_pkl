@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Supplier;
+use App\Models\Kategori;
+use App\Models\Produk;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $kategori = Kategori::count('id');
+        $supplier = Supplier::count('id');
+        $produk = Produk::count('id');
+
+        return view('home',compact('kategori','supplier','produk'));
     }
 }

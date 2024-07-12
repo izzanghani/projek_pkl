@@ -6,21 +6,23 @@ use App\Models\Produk;
 use App\Models\Kategori;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
-use Storage;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class ProdukController extends Controller
 {
     public function index()
     {
         $produk = Produk::all();
-        return view('produk.index', compact('produk'));
+        confirmDelete('Delete','Are you sure?');
+        return view('admin.produk.index', compact('produk'));
     }
 
     public function create()
     {
         $kategori =  Kategori::all();
         $supplier = Supplier::all();
-        return view('produk.create', compact('kategori', 'supplier'));
+        return view('admin.produk.create', compact('kategori', 'supplier'));
     }
 
 
@@ -29,18 +31,25 @@ class ProdukController extends Controller
         $validated = $request->validate([
             'nama_produk' => 'required',
             'harga' => 'required',
+            'stok' => 'required',
 
         ]);
 
         $produk = new produk();
         $produk->nama_produk = $request->nama_produk;
         $produk->harga = $request->harga;
+        $produk->stok = $request->stok;
         $produk->id_kategori = $request->id_kategori;
         $produk->id_supplier = $request->id_supplier;
 
-        $produk->save();
-
-
+        if ($request->hasFile('cover')) {
+            $img = $request->file('cover');
+            $name = rand(1000, 9999) . $img->getClientOriginalName();
+            $img->move('images/produk', $name);
+            $produk->cover = $name;
+        }
+        Alert::success('Success','data berhasil disimpan')->autoClose(1000);
+         $produk->save();
         return redirect()->route('produk.index');
     }
 
@@ -53,38 +62,46 @@ class ProdukController extends Controller
 
     public function edit($id)
     {
+
         $kategori =  Kategori::all();
         $supplier = Supplier::all();
         $produk = Produk::findOrFail($id);
-        return view('produk.edit', compact('produk','kategori','supplier'));
+        return view('admin.produk.edit', compact('produk','kategori','supplier'));
     }
 
 
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'nama_kategori' => 'required',
+            'nama_produk' => 'required',
             'harga' => 'required',
+            'stok' => 'required',
 
         ]);
 
         $produk = produk::findOrFail($id);
         $produk->nama_produk = $request->nama_produk;
         $produk->harga = $request->harga;
+        $produk->stok = $request->stok;
         $produk->id_kategori = $request->id_kategori;
         $produk->id_supplier = $request->id_supplier;
 
+        if ($request->hasFile('cover')) {
+            $img = $request->file('cover');
+            $name = rand(1000, 9999) . $img->getClientOriginalName();
+            $img->move('images/produk', $name);
+            $produk->cover = $name;
+        }
+        Alert::success('Success','data berhasil disimpan')->autoClose(1000);
         $produk->save();
         return redirect()->route('produk.index');
     }
 
-    public function destroy(produk $produk)
+    public function destroy($id)
     {
-        {
-            $produk = Produk::findOrFail($id);
-
-            $produk->delete();
-            return redirect()->route('produk.index');
-        }
+        $produk = Produk::findOrFail($id);
+        $produk->delete();
+        Alert::success('success','Data nerhasil Dihapus');
+        return redirect()->route('produk.index');
     }
 }

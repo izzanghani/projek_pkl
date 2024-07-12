@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 use Auth;
 use Closure;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class isAdmin
 {
@@ -15,11 +16,11 @@ class isAdmin
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
 
-public function handle(Request $request, Closure $next): Response
-    {
-        if (Auth::user()->isAdmin != 1) {
-            return redirect('/');
-        }
-        return $next($request);
-    }
+     public function handle(Request $request, Closure $next): Response
+     {
+         if (Auth::user()->isAdmin != 1) {
+             return redirect('/');
+         }
+         return $next($request);
+     }
 }
