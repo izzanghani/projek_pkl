@@ -9,7 +9,7 @@ class Kategori extends Model
 {
     use HasFactory;
     protected $fillable = ['id', 'nama_kategori'];
-    // protected $table = ['Kategoris'];
+   
     public $timestamps = true;
 
     //relasi ke tabel telepon

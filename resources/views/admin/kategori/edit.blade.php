@@ -1,47 +1,82 @@
+
 @extends('layouts.admin')
 
 @section('content')
-<div class="container mt-10">
-    <div class="row page-titles mx-0">
-        <div class="col-sm-12 p-md-0">
-            <div class="welcome-text">
-              <h4>Tables / Kategori / Edit</h4>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 <div class="container">
-            <div class="card mb-4 ">
-                <div class="card-body pt-2 mt-1" >
-                    <form id="formAccountSettings" method="POST" action="{{ route('kategori.update', $kategori->id) }}">
-                        @csrf
-                        @method('PUT') <!-- Hidden method field for PUT request -->
-
-                        <div class="mb-2">
-                            <label class="form-label">Nama kategori</label>
-                            <input type="text" class="form-control @error('kategori') is-invalid @enderror" name="nama_kategori"
-                            value="{{ old('kategori') }}" placeholder="Nama kategori" required>
-                            @error('kategori')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-
-                            <div class="mt-4">
-                                <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
-                                <button type="reset" class="btn btn-sm btn-danger">reset</button>
-                            </div>
-                        </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <div class="float-start">
+                        {{ __('Dashboard') }}
                     </div>
+                    <div class="float-end">
+                        <a href="{{ route('ruangan.index') }}" class="btn btn-sm btn-primary">Kembali</a>
+                    </div>
+                </div>
 
+                <div class="card-body">
+                    <form action="{{ route('ruangan.update', $ruangan->id) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @method('put')
+                        @csrf
+                        <div class="mb-3">
+                            <label class="form-label">Nama ruangan</label>
+                            <input type="text" class="form-control @error('nama_ruangan') is-invalid @enderror" name="nama_ruangan"
+                                value="{{ $ruangan->nama_ruangan }}" placeholder="nama ruangan" required>
+                            @error('nama_ruangan')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Nama pic</label>
+                            <input type="text" class="form-control @error('nama_pic') is-invalid @enderror" name="nama_pic"
+                                value="{{ $ruangan->nama_pic }}" placeholder="nama pic" required>
+                            @error('nama_pic')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Jumlah Komputer</label>
+                            <input type="text" class="form-control @error('jml_komputer') is-invalid @enderror" name="jml_komputer"
+                                value="{{ $ruangan->jml_komputer }}" placeholder="jumlah komputer" required>
+                            @error('jml_komputer')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Jumlah leptop</label>
+                            <input type="text" class="form-control @error('jml_leptop') is-invalid @enderror" name="jml_leptop"
+                                value="{{ $ruangan->jml_leptop }}" placeholder="jumlah leptop" required>
+                            @error('jml_leptop')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+
+
+
+
+
+
+
+                        <button type="submit" class="btn btn-sm btn-primary">SIMPAN</button>
+                        <button type="reset" class="btn btn-sm btn-danger">RESET</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
-
 @endsection

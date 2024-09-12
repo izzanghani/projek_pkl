@@ -11,7 +11,7 @@
                         {{ __('Dashboard') }}
                     </div>
                     <div class="float-end">
-                        <a href="{{ route('produk.index') }}" class="btn btn-sm btn-outline-primary">Kembali</a>
+                        <a href="{{ route('produk.index') }}" class="btn btn-sm btn-primary">Kembali</a>
                     </div>
                 </div>
 

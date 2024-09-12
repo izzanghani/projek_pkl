@@ -44,7 +44,7 @@
             <div class="stat-widget-two card-body">
                 <div class="stat-content">
                     <div class="stat-text"><h4>Jumlah Data di Tabel Supplier</h4></div>
-                    <div class="stat-digit"> <i class="fa fa-usd"></i>{{$supplier}} Data</div>
+                    <div class="stat-digit"> <i class="fa "></i>{{$supplier}} Data</div>
                 </div>
                 <div class="progress">
                     <div class="progress-bar progress-bar-success w-85" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
@@ -57,7 +57,7 @@
             <div class="stat-widget-two card-body">
                 <div class="stat-content">
                     <div class="stat-text"><H4>Jumlah Data di Tabel Kategori</H4></div>
-                    <div class="stat-digit"> <i class="fa fa-usd"></i>{{$kategori}} Data</div>
+                    <div class="stat-digit"> <i class="fa "></i>{{$kategori}} Data</div>
                 </div>
                 <div class="progress">
                     <div class="progress-bar progress-bar-primary w-75" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
@@ -70,7 +70,7 @@
             <div class="stat-widget-two card-body">
                 <div class="stat-content">
                     <div class="stat-text"><H4>Jumlah Data di Tabel Produk</H4></div>
-                    <div class="stat-digit"> <i class="fa fa-usd"></i>{{$produk}} Data</div>
+                    <div class="stat-digit"> <i class="fa "></i>{{$produk}} Data</div>
                 </div>
                 <div class="progress">
                     <div class="progress-bar progress-bar-warning w-50" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>

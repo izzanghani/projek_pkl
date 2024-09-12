@@ -9,7 +9,7 @@
                             <h5>transaksi</h5>
                         </div>
                         <div class="float-end">
-                            <a href="" class="btn btn-sm btn-outline-primary">Kembali</a>
+                            <a href="" class="btn btn-sm btn-primary">Kembali</a>
                         </div>
                     </div>
 
